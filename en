@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Allison Haut</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: white;
+      background-color: #000;
+    }
+
+    #vanta-bg {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: auto;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 50px;
+      gap: 50px;
+    }
+
+    .left {
+      flex: 1;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .left p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .charts {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    canvas {
+      background-color: #111;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: flex-start;
+      margin-top: 40px;
+    }
+
+    .btn {
+      background-color: rgba(0, 255, 0, 0.2);
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #00ff88;
+      color: #000;
+    }
+
+    .card-btn {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .card-btn a {
+      font-size: 0.95rem;
+      color: #00ff88;
+      text-decoration: underline;
+    }
+
+    .extras {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .extras a {
+      background-color: #111;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #00ff88;
+      text-align: center;
+      width: 140px;
+      color: #00ff88;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.3s;
+    }
+
+    .extras a:hover {
+      background-color: #00ff88;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="vanta-bg">
+    <div class="content">
+      <!-- LEFT INFO -->
+      <div class="left">
+        <p>✅ I develop the ideal Dashboard/Chart for your business.</p>
+        <p>📊 I build the spreadsheet you need.</p>
+        <p>📈 I calculate your full-year sales/demand forecasts and business growth projections.</p>
+        <p>🤖 I add an Agent to your operation to speed up customer service.</p>
+        <p>🛍️ Specialized consultancy to scale sales with a customer portfolio.</p>
+
+        
+<div class="buttons">
+  <h1>Allison Haut</h1>
+  <a href="https://wa.me/5547997586208" target="_blank" class="btn">WhatsApp</a>
+  <a href="mailto:allisonhaut@gmail.com" class="btn">E-mail</a>
+  <a href="https://www.linkedin.com/in/allison-haut-8aa835213/" target="_blank" class="btn">LinkedIn</a>
+  <a href="index.html" class="btn">🇧🇷 Portuguese</a>
+  <a href="https://wa.me/5547997586208?text=I%20want%20you%20to%20create%20a%20chatbot%20for%20me" target="_blank" class="btn">🤖 Create a Chatbot</a>
+  <a href="https://wa.me/5547997586208?text=I%20want%20a%20custom%20spreadsheet" target="_blank" class="btn">📊 Custom Spreadsheet</a>
+  <a href="https://wa.me/5547997586208?text=I%20want%20a%20Power%20BI%20dashboard" target="_blank" class="btn">📈 Create a Power BI Dashboard</a>
+  <a href="https://wa.me/5547997586208?text=I%20want%20to%20calculate%20my%20sales%20and%20expenses" target="_blank" class="btn">🧮 Calculate Sales/Expenses</a>
+</div>
+
+      </div>
+
+      <!-- RIGHT GRAPHS -->
+      <div class="charts">
+        <h1 style="margin-bottom: 10px; font-size: 1.8rem; color: #00ff88;">What can I build for you?</h1>
+
+        <!-- SALES CHART -->
+        <div style="text-align: center;">
+          <h2>Sales</h2>
+          <canvas id="graficoVendas" width="300" height="250"></canvas>
+          <div class="card-btn">
+            <a href="https://wa.me/5547997586208?text=I%20want%20a%20sales%20chart%20for%20my%20business" target="_blank">Request this chart</a>
+          </div>
+        </div>
+
+        <!-- EXPENSES CHART -->
+        <div style="text-align: center;">
+          <h2>Expenses</h2>
+          <canvas id="graficoPizza" width="300" height="250"></canvas>
+          <div class="card-btn">
+            <a href="https://wa.me/5547997586208?text=I%20want%20an%20expenses%20chart%20for%20my%20business" target="_blank">Request this chart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VANTA + CHARTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script>
+    VANTA.NET({
+      el: "#vanta-bg",
+      color: 0x00ff88,
+      backgroundColor: 0x000000,
+      points: 12.0,
+      maxDistance: 20.0,
+      spacing: 15.0
+    });
+
+    // Sales Chart
+    const ctxBar = document.getElementById('graficoVendas').getContext('2d');
+    new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+        datasets: [{
+          label: 'Sales (R$)',
+          data: [120076, 98570, 130231, 112465, 103608, 87054, 156690, 145032],
+          backgroundColor: 'rgba(0, 255, 136, 0.4)',
+          borderColor: '#00ff88',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: false,
+        plugins: {
+          legend: {
+            labels: { color: '#00ff88' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: '#fff' } },
+          y: { ticks: { color: '#fff' } }
+        }
+      }
+    });
+
+    // Expenses Pie Chart
+    const ctxPie = document.getElementById('graficoPizza').getContext('2d');
+    new Chart(ctxPie, {
+      type: 'pie',
+      data: {
+        labels: ['People Management', 'Raw Material', 'Processes'],
+        datasets: [{
+          label: 'Expenses (R$)',
+          data: [45000, 31010, 29000],
+          backgroundColor: [
+            'rgba(0, 255, 136, 0.6)',
+            'rgba(0, 255, 255, 0.6)',
+            'rgba(255, 255, 0, 0.6)'
+          ],
+          borderColor: '#000',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: false,
+        plugins: {
+          legend: {
+            labels: { color: '#fff' }
+          }
+        }
+      }
+    });
+  </script>
+<footer style="margin-top: 50px; background-color: #0a0a0a; padding: 30px 20px; text-align: center; border-top: 1px solid #00ff88;">
+  <p style="max-width: 900px; margin: auto; font-size: 1rem; color: #ccc; line-height: 1.6;">
+    <strong style="color: #00ff88;">Passionate about data</strong> and turning numbers into strategy, I work as a Data Analyst in the financial sector, helping boost campaigns and business decisions through clear, actionable insights.<br><br>
+    I have experience with <strong>Excel, SQL</strong>, <strong>Power BI</strong>, <strong>Python</strong>, and <strong>data modeling</strong>, along with strong <strong>data storytelling</strong> skills — always focused on <strong>problem-solving</strong> and <strong>process improvement</strong>.
+  </p>
+</footer>
+</body>
+</html>
